@@ -1,7 +1,7 @@
 #!/usr/bin/python3.6
-# created by cicek on 12.09.2019 14:19
+# created by cicek on 13.09.2019 13:02
 
-# get PNR from <link RezvEntry>
+# get PNR from <link - RezvEntry>
 # 1 adult -local machine- (node)
 
 import pytest
@@ -45,8 +45,8 @@ class TestPnrLocal:
 
     def test_pnr_local(self):
         # Test name: test_pnr_local
-        # 1 | open | <link RezvEntry> |
-        browser.get("<link RezvEntry>")
+        # 1 | open | <link - RezvEntry> |
+        browser.get("<link - RezvEntry>")
         # 2 | click | css=#tripTypeArea > label:nth-child(1) |
         browser.find_element(By.CSS_SELECTOR, "#tripTypeArea > label:nth-child(1)").click()
         # 5 | click | id=depPort |
@@ -104,9 +104,11 @@ class TestPnrLocal:
         next_page = WebDriverWait(browser, 20).until(EC.element_to_be_clickable((By.XPATH, '//*[@value="CONTINUE"]')))
         next_page.click()
         sleep(3)
+
         # 19 | click | id=gender1 |
         browser.find_element(By.ID, "gender1").click()
         sleep(1)
+
         # 20 | select | id=gender1 | label=Mr. |
         drop_down = WebDriverWait(browser, 20).until(EC.element_to_be_clickable((By.ID, 'gender1')))
         drop_down.find_element(By.XPATH, "//option[. = 'Mr.']").click()
@@ -147,10 +149,12 @@ class TestPnrLocal:
         # 36 | type | id=email0 | a@b.com |
         browser.find_element(By.ID, "email0").send_keys("a@b.com")
         sleep(2)
+
         # 37 | click | id=btnSave |
         browser.find_element(By.ID, 'btnSave').click()
         browser.implicitly_wait(2)
         sleep(10)
+
         # 38 | click | id=addSSRContinueBTn |
         continue_btn = WebDriverWait(browser, 20).until(EC.element_to_be_clickable((By.ID, 'addSSRContinueBTn')))
         continue_btn.click()
@@ -191,10 +195,12 @@ class TestPnrLocal:
         actions.send_keys()
         browser.find_element(By.ID, "cvc").send_keys("111")
         sleep(1)
+
         # 51 | click | css=.confirm__label:nth-child(1) > label |
         tab = browser.find_element_by_xpath('//*[@id="CREDIT_CARD_tab"]/div[1]/div[3]/div')
         browser.execute_script("arguments[0].scrollIntoView();", tab)
         sleep(0.5)
+
         tab.click()
         sleep(1)
 
@@ -207,11 +213,16 @@ class TestPnrLocal:
         browser.find_element(By.ID, "btnBuy").click()
         sleep(10)
 
-        span = browser.find_element_by_xpath('//*[contains(text(), "Reservation (PNR)")]')
-        print(span.text)
-        pnr = browser.find_element_by_xpath('//*[contains(text(), "PNP")]')
-        print(pnr.text)  # print PNR
-        print("Surname: cicek")
+        try:
+            span_list = browser.find_elements(By.XPATH, '//*[contains(@class, "booking-reference")]/span')
+            print("\n\n--------------------------------------------------------------")
+            for i in span_list:
+                print(i.text)  # print PNR
+        except Exception:  # too broad exception clause
+            print("Element not found")
+            # //*[@id="j_idt18"]/div[5]/div[1]/div[1]/div[1]/div[2]/div[2]/div/span[1]
+            # //*[@id="j_idt18"]/div[5]/div[1]/div[1]/div[1]/div[2]/div[2]/div/span[2]
+        print("Surname: cicek\n--------------------------------------------------------------\n")
 
     def test_teardown(self):
         # 53 | close |
