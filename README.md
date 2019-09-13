@@ -1,3 +1,3 @@
 # selenium and pytest automation
-@author bayramcicek </br> selenium/pytest internship project </br> subject: get PNR from an airway website.
+selenium/pytest internship project </br> subjects: *get PNR from an airway website. </br> *check-in test </br> *reservation test  
 #### 23 aug - 20 Sep
