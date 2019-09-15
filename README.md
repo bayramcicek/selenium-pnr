@@ -1,8 +1,8 @@
 # selenium and pytest automation
 ### selenium/pytest internship project
 subjects:
-* get PNR from an airway website
-* check-in test
-* reservation test  
+* PNR Project
+* check-in test Project
+* reservation test Project
 * Jenkins integration
 #### 23 aug - 20 Sep
