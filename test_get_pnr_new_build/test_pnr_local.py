@@ -211,11 +211,11 @@ class TestPnrLocal:
 
         # 52 | click | id=btnBuy |
         browser.find_element(By.ID, "btnBuy").click()
-        sleep(10)
+        sleep(12)
 
         try:
             span_list = browser.find_elements(By.XPATH, '//*[contains(@class, "booking-reference")]/span')
-            print("\n\n--------------------------------------------------------------")
+            print("\n\n-----------------------------1 ADULT---------------------------")
             for i in span_list:
                 print(i.text)  # print PNR
         except Exception:  # too broad exception clause
