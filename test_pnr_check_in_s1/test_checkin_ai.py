@@ -44,7 +44,6 @@ class TestCheckinAi:
         form_button.click()
         sleep(0.8)
 
-        # 9 | click | css=.hover > .iCheck-helper |
         for i in range(10):
             browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
         sleep(0.5)
