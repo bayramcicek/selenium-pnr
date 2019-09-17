@@ -1,20 +1,19 @@
 #!/usr/bin/python3.6
-# created by cicek on 5.09.2019 14:50
+# created by cicek on 17.09.2019 13:16
 
-# check-in: 1 adult + 1 Infant from <link checkin/search>
+# check-in: 1 CHILD from <link checkin/search>
 
 import pytest
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
 
 get_pnr = str(input(" Enter PNR: "))
 get_surname = str(input("Enter SURNAME: "))
 
 
-class TestCheckinAi:
+class TestCheckinC:
 
     def test_setup(self):
         global browser
@@ -22,13 +21,13 @@ class TestCheckinAi:
         browser.implicitly_wait(2)
         browser.maximize_window()
 
-    def test_checkin_ai(self):
-        # Test name: test_checkin_ai
+    def test_checkin_c(self):
+        # Test name: test_checkin_c
         # 1 | open | <link checkin/search> |
         browser.get("<link checkin/search>")
         # 2 | click | id=PNRNo |
         browser.find_element(By.ID, "PNRNo").click()
-        # 3 | type | id=PNRNo |
+        # 3 | type | id=PNRNo | ZW80MJ |
         browser.find_element(By.ID, "PNRNo").send_keys(get_pnr)
         # 4 | click | id=surname |
         browser.find_element(By.ID, "surname").click()
@@ -38,53 +37,57 @@ class TestCheckinAi:
         browser.find_element(By.NAME, "btnPNRSearch").click()
         # 7 | click | css=.color-type-8 | available |
         browser.find_element(By.CSS_SELECTOR, ".color-type-8").click()
-        # 8 | click |
+
         form_button = browser.find_element(By.XPATH, '//*[@id="passengerSelectForm"]/button')
+
         browser.execute_script("arguments[0].scrollIntoView();", form_button)
         form_button.click()
         sleep(0.8)
 
-        # 9 | click | css=.hover > .iCheck-helper |
-        for i in range(10):
+        for i in range(6):
             browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
         sleep(0.5)
 
         browser.find_element_by_tag_name('body').send_keys(Keys.SPACE)
-        sleep(0.5)
+        sleep(5)
 
-        browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
-        sleep(1)
+        # child ckeck-in
+        # 8 | open | <link checkin/search> |
+        browser.get("<link checkin/search>")
+        # 9 | click | id=PNRNo |
+        browser.find_element(By.ID, "PNRNo").click()
+        # 10 | type | id=PNRNo |
+        browser.find_element(By.ID, "PNRNo").send_keys(get_pnr)
+        # 11 | click | id=surname |
+        browser.find_element(By.ID, "surname").click()
+        # 12 | type | id=surname |
+        browser.find_element(By.ID, "surname").send_keys(get_surname)
+        # 13 | click | name=btnPNRSearch |
+        browser.find_element(By.NAME, "btnPNRSearch").click()
+        # 14 | click | css=.color-type-8 | available |
+        browser.find_element(By.CSS_SELECTOR, ".color-type-8").click()
 
-        browser.find_element_by_tag_name('body').send_keys(Keys.SPACE)
+        form_button = browser.find_element(By.XPATH, '//*[@id="passengerSelectForm"]/button')
 
-        element = browser.find_element(By.CSS_SELECTOR, "body")
-        actions = ActionChains(browser)
-        actions.move_to_element(element).perform()
-
-        browser.find_element(By.XPATH, '//*[@id="passengerSelectForm"]/button').click()
-        sleep(0.5)
-
-        browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
+        browser.execute_script("arguments[0].scrollIntoView();", form_button)
+        form_button.click()
         sleep(0.8)
 
-        browser.find_element_by_tag_name('body').send_keys(Keys.SPACE)
-        sleep(3)
-
-        for i in range(2):
+        for i in range(7):
             browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
-        browser.find_element_by_tag_name('body').send_keys(Keys.SPACE)
-        sleep(2)
+        sleep(0.5)
 
-        for i in range(3):
-            browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
-        browser.find_element_by_tag_name('body').send_keys(Keys.SPACE)
-        sleep(1)
-
-        for i in range(2):
-            browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
         browser.find_element_by_tag_name('body').send_keys(Keys.SPACE)
         sleep(0.5)
 
+        for i in range(4):
+            browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
+        sleep(0.5)
+
+        browser.find_element_by_tag_name('body').send_keys(Keys.SPACE)
+        sleep(0.5)
+
+        # 15 | click | css=.checkin-passenger-next > span |
         browser.find_element(By.XPATH, '//*[@id="passengerSelectForm"]/button').click()
         sleep(0.8)
 
@@ -97,11 +100,13 @@ class TestCheckinAi:
 
         browser.find_element(By.XPATH, '//*[@id="perform"]').click()
 
-        print("\n\n------------------AI-check-in-DONE-----------------\n\n")
+        print("\n\n----------------Child-check-in-DONE---------------\n\n")
         sleep(1)
 
+        sleep(16)
+
     def test_teardown(self):
-        # | close |
+        # 16 | close |
         browser.close()
         print("test completed")
 

@@ -1,0 +1,25 @@
+---------------senaryo 1 ----------------------
+
+--PNR--
+1 ADULT 1 CHILD 1 INFANT için PNR al (TAMAMLANDI)
+
+--CHECK-IN--
+önce INFANT için check-in yap. Çıkan uyarıdan sonra ADULT + INFANT check in yap (TAMAMLANDI)
+aynı PNR için tekrar check in yap.(TAMAMLANDI)
+ADULT + INFANT --> summary sayfasına atmalı.(TAMAMLANDI)
+CHILD check-in --> sadece CHILD görülmeli. (TAMAMLANDI)
+
+---------------senaryo 2 --------------------
+
+rezerv pnr (TAMAMLANDI)
+kmf/rezervation (TAMAMLANDI)
+purchase --> payment (TAMAMLANDI)
+
+
+---------------senaryo 3 ----------------------
+
+rezerv pnr
+kmf/rezervation
+flight chance
+2 gün sonra
+seç
