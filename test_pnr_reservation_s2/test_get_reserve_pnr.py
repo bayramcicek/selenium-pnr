@@ -1,7 +1,7 @@
 #!/usr/bin/python3.6
 # created by cicek on 10.09.2019 15:15
 
-# get PNR from https://kmf-stage.crane.aero/web/RezvEntry.xhtml
+# get PNR from <link - RezvEntry>
 # 1 adult -local machine- (node)
 
 import pytest
@@ -43,8 +43,8 @@ class TestGetReservePnr:
 
     def test_get_reserve_pnr(self):
         # Test name: test_get_reserve_pnr
-        # 1 | open | https://kmf-stage.crane.aero/web/RezvEntry.xhtml |
-        browser.get("https://kmf-stage.crane.aero/web/RezvEntry.xhtml")
+        # 1 | open | <link - RezvEntry> |
+        browser.get("<link - RezvEntry>")
         # 2 | click | css=#tripTypeArea > label:nth-child(1) |
         browser.find_element(By.CSS_SELECTOR, "#tripTypeArea > label:nth-child(1)").click()
         # 5 | click | id=depPort |
@@ -186,3 +186,4 @@ class TestGetReservePnr:
 
 if __name__ == '__main__':
     pytest.main()
+
