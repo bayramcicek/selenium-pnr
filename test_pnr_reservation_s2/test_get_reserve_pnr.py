@@ -13,7 +13,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
 
 # nextDay = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%m/%d/%Y")
 nextDay = (datetime.datetime.now() + datetime.timedelta(days=5)).strftime("%d")
@@ -48,7 +47,8 @@ class TestGetReservePnr:
         browser.get("<link - RezvEntry>")
         # 2 | click | css=#tripTypeArea > label:nth-child(1) |
         browser.find_element(By.CSS_SELECTOR, "#tripTypeArea > label:nth-child(1)").click()
-        # 5 | click | id=depPort | browser.find_element(By.ID, "depPort").click() 6 | select | id=depPort |
+        # 5 | click | id=depPort |
+        # browser.find_element(By.ID, "depPort").click() 6 | select | id=depPort |
         # label=Kabul International (KBL) | #depPort > optgroup:nth-child(2) > option:nth-child(1)
         drop_down = browser.find_element(By.ID, "depPort")
         drop_down.find_element(By.XPATH, "//option[. = 'Kabul International (KBL)']").click()
@@ -58,7 +58,7 @@ class TestGetReservePnr:
         # browser.find_element(By.ID, "arrPort").click()
         # 9 | select | id=arrPort | label=Mazar-i-Sharif (MZR) |
         # drop_down_arr = browser.find_element(By.ID, "arrPort")
-        browser.find_element(By.XPATH, "//*[@id='arrPort']/optgroup[1]/option[9]").click()
+        browser.find_element(By.XPATH, "//*[@id='arrPort']//option[. = 'Mazar-i-Sharif (MZR)']").click()
         # # 10 | click | css=#arrPort > optgroup:nth-child(2) > option |
         # browser.find_element(By.CSS_SELECTOR, "#arrPort > optgroup:nth-child(2) > option").click()
         # 11 | runScript | window.scrollTo(0,0) |
@@ -157,23 +157,26 @@ class TestGetReservePnr:
 
         browser.find_element_by_xpath('//*[contains(text(), "RESERVATION")]').click()
         sleep(1)
-        for i in range(9):
+        for i in range(12):
             browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
         browser.find_element_by_tag_name('body').send_keys(Keys.SPACE)
 
         for i in range(2):
             browser.find_element_by_tag_name('body').send_keys(Keys.TAB)
         browser.find_element_by_tag_name('body').send_keys(Keys.SPACE)
-        sleep(1)
+        sleep(5)
 
-        span = browser.find_element_by_xpath('//*[contains(text(), "Reservation (PNR)")]')
-        print("\n" + span.text)
-        pnr = browser.find_element_by_xpath('//*[contains(text(), "PNP")]')
-        pnr_no = pnr.text
-        print(pnr_no)  # print PNR
-        print("Surname: cicek")
+        try:
+            span_list = browser.find_elements(By.XPATH, '//*[contains(@class, "booking-reference")]/span')
+            print("\n\n----------------------1 ADULT RESERVATION----------------------")
+            for i in span_list:
+                print(i.text)  # print PNR
+        except Exception:  # too broad exception clause
+            print("Element not found")
+            # //*[@id="j_idt18"]/div[5]/div[1]/div[1]/div[1]/div[2]/div[2]/div/span[1]
+            # //*[@id="j_idt18"]/div[5]/div[1]/div[1]/div[1]/div[2]/div[2]/div/span[2]
+        print("Surname: cicek\n--------------------------------------------------------------\n")
         sleep(1)
-
 
     def test_teardown(self):
         # 79 | close |
