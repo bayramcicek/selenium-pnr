@@ -9,7 +9,7 @@ aynı PNR için tekrar check in yap.(TAMAMLANDI)
 ADULT + INFANT --> summary sayfasına atmalı.(TAMAMLANDI)
 CHILD check-in --> sadece CHILD görülmeli. (TAMAMLANDI)
 
----------------senaryo 2 --------------------
+---------------senaryo 2 ----------------------
 
 rezerv pnr (TAMAMLANDI)
 kmf/rezervation (TAMAMLANDI)
@@ -18,8 +18,22 @@ purchase --> payment (TAMAMLANDI)
 
 ---------------senaryo 3 ----------------------
 
-rezerv pnr
-kmf/rezervation
-flight chance
-2 gün sonra
-seç
+rezerv pnr (TAMAMLANDI)
+kmf/rezervation (TAMAMLANDI)
+flight chance (TAMAMLANDI)
+2 gün sonra (TAMAMLANDI)
+seç (TAMAMLANDI)
+
+---------------senaryo 4-----------------------
+
+3 gün sonra pnr al (TAMAMLANDI)
+1 adult ve adult child infant (TAMAMLANDI)
+
+
+---------------senaryo 5-----------------------
+
+uluslararası (TAMAMLANDI)
+kbl - jed (TAMAMLANDI)
+1 adult ve adult child infant için pnr al (TAMAMLANDI)
+
+-----------------------------------------------
