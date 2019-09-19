@@ -6,4 +6,5 @@ subjects:
 * reservation test Project
 * Jenkins integration
 * flight change test
+* international flight test
 #### 23 aug - 20 Sep
