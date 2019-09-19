@@ -58,14 +58,14 @@ class TestPnrLocalAci:
         drop_down = browser.find_element(By.ID, "depPort")
         drop_down.find_element(By.XPATH, "//option[. = 'Kabul International (KBL)']").click()
         # 7 | click | css=#depPort > optgroup:nth-child(2) > option:nth-child(1) |  |
-        browser.find_element(By.CSS_SELECTOR, "#depPort > optgroup:nth-child(2) > option:nth-child(1)").click()
+        # browser.find_element(By.CSS_SELECTOR, "#depPort > optgroup:nth-child(2) > option:nth-child(1)").click()
         # 8 | click | id=arrPort |
-        browser.find_element(By.ID, "arrPort").click()
+        # browser.find_element(By.ID, "arrPort").click()
         # 9 | select | id=arrPort | label=Mazar-i-Sharif (MZR) |
-        drop_down = browser.find_element(By.ID, "arrPort")
-        drop_down.find_element(By.XPATH, "//option[. = 'Mazar-i-Sharif (MZR)']").click()
+        # drop_down = browser.find_element(By.ID, "arrPort")
+        drop_down.find_element(By.XPATH, "//*[@id='arrPort']//option[. = 'Mazar-i-Sharif (MZR)']").click()
         # 10 | click | css=#arrPort > optgroup:nth-child(2) > option |
-        browser.find_element(By.CSS_SELECTOR, "#arrPort > optgroup:nth-child(2) > option").click()
+        # browser.find_element(By.CSS_SELECTOR, "#arrPort > optgroup:nth-child(2) > option").click()
         # 11 | runScript | window.scrollTo(0,0) |
         browser.execute_script("window.scrollTo(0,0)")
 
